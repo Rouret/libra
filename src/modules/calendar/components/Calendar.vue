@@ -2,37 +2,24 @@
 import { ref } from 'vue';
 import { DateTime } from 'luxon';
 import { getCurrentWeek } from '../utils/date';
+import CalendarHeader from './CalendarHeader.vue';
+import CalendarContent from './CalendarContent.vue';
 
 const today = ref<DateTime>(DateTime.now());
 const week = ref<DateTime[]>(getCurrentWeek(today.value));
 
 </script>
 
-
 <template>
     <div id="libra-calendar-root">
         <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th v-for="day in week">
-                        {{ day.toFormat('ccc, LLL d') }}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="hour in 24" :key="hour">
-                    <td>{{ hour }}</td>
-                    <td v-for="day in week">
-                        <slot name="cell" :day="day" :hour="hour"></slot>
-                    </td>
-                </tr>
-            </tbody>
+            <CalendarHeader :week=week />
+            <CalendarContent :week=week />
         </table>
     </div>
 </template>
 
-<style scoped>
+<style>
 #libra-calendar-root {
     width: 100%;
     height: 100%;
