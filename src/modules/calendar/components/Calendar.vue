@@ -4,9 +4,17 @@ import { DateTime } from 'luxon';
 import { getCurrentWeek } from '../utils/date';
 import CalendarHeader from './CalendarHeader.vue';
 import CalendarContent from './CalendarContent.vue';
+import { CalendarEvent } from '../types';
+import { getEventsForWeek } from '../utils/events';
+
+const { events } = defineProps<{
+    events: CalendarEvent[],
+}>();
+
 
 const today = ref<DateTime>(DateTime.now());
 const week = ref<DateTime[]>(getCurrentWeek(today.value));
+const eventsWeek = getEventsForWeek(events, week.value);
 
 </script>
 
@@ -14,7 +22,7 @@ const week = ref<DateTime[]>(getCurrentWeek(today.value));
     <div id="libra-calendar-root">
         <table>
             <CalendarHeader :week=week />
-            <CalendarContent :week=week />
+            <CalendarContent :week=week :events=eventsWeek />
         </table>
     </div>
 </template>
