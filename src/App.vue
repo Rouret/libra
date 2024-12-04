@@ -1,24 +1,19 @@
 <script setup lang="ts">
-
+import Calendar from './modules/calendar/components/Calendar.vue';
 </script>
 
-<template>Œ
-  <div>
-    <h1>Hello</h1>
-   </div>
+<template>
+  <Calendar />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+html {
+  padding: 0;
+  margin: 0;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+div {
+  width: 100vw;
+  height: 100vh;
 }
 </style>
